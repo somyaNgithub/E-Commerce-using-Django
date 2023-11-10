@@ -7,7 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>
-    {% block title %} {% endblock title %}
+{% block title %} {% endblock title %}
   </title>
   
   <meta content="" name="description">
@@ -43,17 +43,29 @@
           <li><a class="nav-link scrollto active" href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="/blog">Blog</a></li>
           <li><a class="nav-link scrollto" href="/about">About</a></li>
-          <li><a class="nav-link scrollto" href="/about">Orders</a></li>          
-          <li><a class="nav-link scrollto" href="/about">My Profile</a></li>          
+          <li><a class="nav-link scrollto" href="/checkout">CheckOut</a></li>          
+          <li><a class="nav-link scrollto" href="/about">My Profile</a></li>    
+              
+          <button type="button" class="nav-link scrollto bg-danger p-2 m-2 text-white" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html='true'>Cart(<span id="cart">0</span>)
+          </button>  
 
+
+          {% if request.user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="/auth/logout/">Logout </a></li>
+          
+          {% else %}
           <li class="dropdown"><a href="#"><span>SignIn</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/auth/signup/">SignUP</a></li>
               <li><a href="/auth/login/">Login</a></li>
-              <li><a href="/auth/logout/">Logout</a></li>
+              
             </ul>
           </li>
-          <li><a class="nav-link scrollto bg-danger p-2 m-2" href="/contact">Cart</a></li>
+          {% endif %}
+
+          
+
+          
           <li><a class="nav-link scrollto bg-dark p-2 m-2" href="/contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -67,6 +79,8 @@
     <div class="hero-container">
       
         {% block content %}
+
+        
                 
         {% endblock content %}
 
